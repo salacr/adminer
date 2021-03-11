@@ -623,7 +623,7 @@ ORDER BY connamespace, conname") as $row) {
 
 	function triggers($table) {
 		$return = array();
-		foreach (get_rows("SELECT * FROM information_schema.triggers WHERE event_object_table = " . q($table)) as $row) {
+		foreach (get_rows('SELECT trigger_name, action_timing, STRING_AGG(event_manipulation, \' OR \') AS event_manipulation FROM information_schema.triggers WHERE event_object_table = '.q($table).' GROUP BY trigger_name, action_timing') as $row) {
 			$return[$row["trigger_name"]] = array($row["action_timing"], $row["event_manipulation"]);
 		}
 		return $return;
