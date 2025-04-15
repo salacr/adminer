@@ -35,5 +35,8 @@
     "scripts": {
         "clean": "rm -f adminer*.php editor*.php",
         "compile": "@php compile.php"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1"
     }
 }
